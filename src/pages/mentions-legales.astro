@@ -1,6 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../config/site';
+
+const L = site.legal;
+const adresseComplete = [site.adresse.rue, [site.adresse.codePostal, site.adresse.ville].filter(Boolean).join(' ')]
+  .filter(Boolean)
+  .join(', ');
 ---
 
 <BaseLayout title={`Mentions légales | ${site.nomEntreprise}`} noindex>
@@ -11,31 +16,41 @@ import { site } from '../config/site';
       <h2 class="font-display text-xl mt-8 mb-3">Éditeur du site</h2>
       <p>
         <strong>{site.nomEntreprise}</strong><br/>
+        Entreprise de {site.metier} — construction, génie civil, rénovation, études.<br/>
+        {site.adresse.rue && <>{adresseComplete}<br/></>}
         {site.adresse.ville}, {site.pays}<br/>
-        Tél : {site.telephone} / {site.telephoneSecondaire}<br/>
-        Email : {site.email}<br/>
-        NINEA : [À compléter]<br/>
-        Registre du Commerce (RC) : [À compléter]<br/>
-        Forme juridique : [À compléter]<br/>
-        Capital social : [À compléter]<br/>
-        Directeur de la publication : [À compléter]
+        Tél : {site.telephone}{site.telephoneTertiaire && <> / {site.telephoneTertiaire}</>}<br/>
+        Email : {site.email}
+        {L.formeJuridique && <><br/>Forme juridique : {L.formeJuridique}</>}
+        {L.capital && <><br/>Capital social : {L.capital}</>}
+        {L.ninea && <><br/>NINEA : {L.ninea}</>}
+        {L.rc && <><br/>Registre du Commerce (RC) : {L.rc}</>}
+        {L.directeurPublication && <><br/>Directeur de la publication : {L.directeurPublication}</>}
       </p>
 
       <h2 class="font-display text-xl mt-8 mb-3">Hébergeur</h2>
-      <p>
-        [Hébergeur à compléter]
-      </p>
+      <p>{L.hebergeur}</p>
 
       <h2 class="font-display text-xl mt-8 mb-3">Propriété intellectuelle</h2>
       <p>
         L'ensemble du contenu de ce site (textes, images, logos) est la propriété exclusive de
-        {site.nomEntreprise}, sauf mention contraire. Toute reproduction sans autorisation est interdite.
+        {' '}{site.nomEntreprise}, sauf mention contraire. Toute reproduction sans autorisation est interdite.
       </p>
 
-      <h2 class="font-display text-xl mt-8 mb-3">Assurances</h2>
+      {L.assureur && (
+        <>
+          <h2 class="font-display text-xl mt-8 mb-3">Assurances</h2>
+          <p>
+            {site.nomEntreprise} est couverte par une assurance responsabilité civile professionnelle
+            auprès de {L.assureur}{L.assuranceContrat && <> — Contrat n° {L.assuranceContrat}</>}.
+          </p>
+        </>
+      )}
+
+      <h2 class="font-display text-xl mt-8 mb-3">Données personnelles</h2>
       <p>
-        {site.nomEntreprise} est couverte par une assurance responsabilité civile professionnelle
-        auprès de [Nom assureur] — Contrat n° [À compléter].
+        Le traitement de vos données est décrit dans notre
+        {' '}<a href="/politique-confidentialite">politique de confidentialité</a>.
       </p>
     </div>
   </section>

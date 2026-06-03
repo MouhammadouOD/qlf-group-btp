@@ -33,6 +33,17 @@ export const site = {
     instagram: '',
   },
   domaine: 'https://example.com', // ⚠️ à confirmer
+  // Mentions légales — laisser vide masque automatiquement la ligne sur la page.
+  legal: {
+    formeJuridique: '', // ex. SARL, SUARL, SA…
+    ninea: '',
+    rc: '', // n° Registre du Commerce
+    capital: '',
+    directeurPublication: '',
+    assureur: '', // nom de l'assureur RC professionnelle (laisser vide pour masquer la section)
+    assuranceContrat: '', // n° de contrat
+    hebergeur: 'Netlify, Inc. — 512 2nd Street, Suite 200, San Francisco, CA 94107, USA',
+  },
 } as const;
 
 export const services = [
