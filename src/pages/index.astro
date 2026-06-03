@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { site, services } from '../config/site';
+
+const reassurance = [
+  { icon: 'award', titre: 'Qualité', texte: 'Des réalisations durables et conformes aux standards les plus élevés.' },
+  { icon: 'users', titre: 'Professionnalisme', texte: 'Une équipe compétente et engagée.' },
+  { icon: 'clock', titre: 'Respect des délais', texte: 'Une organisation rigoureuse pour livrer dans les temps.' },
+  { icon: 'handshake', titre: 'Confiance', texte: 'Une relation transparente avec nos clients et partenaires.' },
+];
+---
+
+<BaseLayout>
+  <section class="relative bg-anthracite-800 text-white overflow-hidden">
+    <div class="absolute inset-0 opacity-30 bg-[url('/realisations/realisation-15.jpg')] bg-cover bg-center" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-anthracite-900 via-anthracite-900/70 to-anthracite-800/40" aria-hidden="true"></div>
+    <div class="container-page relative py-20 sm:py-28 lg:py-32 max-w-3xl">
+      <p class="inline-block bg-chantier-500/20 text-chantier-300 text-sm font-semibold px-3 py-1 rounded mb-6">
+        Construction · Génie civil · Rénovation · Études
+      </p>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6">
+        Votre confiance, notre fondation
+      </h1>
+      <p class="text-lg sm:text-xl text-anthracite-200 mb-8 leading-relaxed">
+        {site.nomEntreprise} accompagne particuliers, promoteurs et entreprises dans leurs projets
+        de construction, de génie civil, de rénovation et de gestion de projets immobiliers, {site.zone}.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/contact" class="btn-primary">Demander un devis gratuit</a>
+        <a href="/services" class="btn-secondary !bg-transparent !text-white !border-white/30 hover:!bg-white/10">
+          Découvrir nos services
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-page">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="section-title">Nos domaines d'expertise</h2>
+        <p class="section-subtitle mx-auto">
+          Quatre métiers complémentaires pour mener votre projet, du terrain aux finitions.
+        </p>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {services.map((s) => (
+          <a href={`/services/${s.slug}`} class="card group block">
+            <Icon name={s.icon} class="w-10 h-10 text-chantier-500 mb-4" />
+            <h3 class="text-xl font-display font-semibold mb-2">{s.titre}</h3>
+            <p class="text-anthracite-500 text-sm leading-relaxed mb-4">{s.description}</p>
+            <span class="inline-flex items-center gap-1 text-chantier-600 font-semibold text-sm group-hover:gap-2 transition-all">
+              En savoir plus <Icon name="arrowRight" class="w-4 h-4" />
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-page">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 class="section-title">Pourquoi nous confier votre projet ?</h2>
+        <p class="section-subtitle mx-auto">
+          Les engagements que prend QLF Group sur chaque chantier.
+        </p>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {reassurance.map((r) => (
+          <div class="flex gap-4">
+            <Icon name={r.icon} class="w-8 h-8 shrink-0 text-chantier-500" />
+            <div>
+              <h3 class="font-semibold text-anthracite-800 mb-1">{r.titre}</h3>
+              <p class="text-sm text-anthracite-500 leading-relaxed">{r.texte}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-page">
+      <div class="bg-anthracite-800 rounded-lg p-10 sm:p-14 text-center">
+        <h2 class="text-3xl sm:text-4xl font-display font-semibold text-white mb-4">
+          Un projet en tête ? Parlons-en.
+        </h2>
+        <p class="text-anthracite-200 mb-8 max-w-xl mx-auto">
+          Que ce soit pour une simple question, un conseil ou un devis complet,
+          notre équipe vous répond. Premier échange sans engagement.
+        </p>
+        <a href="/contact" class="btn-primary">Demander mon devis gratuit</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../config/site';
+
+// Les 14 régions administratives du Sénégal (marqueur placé sur le chef-lieu).
+// ⚠️ Couverture réelle à confirmer avec le client. Les coordonnées alimentent
+// à la fois la liste ci-dessous et la carte Leaflet.
+const regions = [
+  { nom: 'Dakar', lat: 14.6928, lng: -17.4467, base: true },
+  { nom: 'Thiès', lat: 14.7910, lng: -16.9256 },
+  { nom: 'Diourbel', lat: 14.6556, lng: -16.2339 },
+  { nom: 'Fatick', lat: 14.3390, lng: -16.4110 },
+  { nom: 'Kaolack', lat: 14.1652, lng: -16.0726 },
+  { nom: 'Kaffrine', lat: 14.1059, lng: -15.5508 },
+  { nom: 'Louga', lat: 15.6184, lng: -16.2264 },
+  { nom: 'Saint-Louis', lat: 16.0179, lng: -16.4896 },
+  { nom: 'Matam', lat: 15.6559, lng: -13.2554 },
+  { nom: 'Tambacounda', lat: 13.7707, lng: -13.6673 },
+  { nom: 'Kédougou', lat: 12.5556, lng: -12.1808 },
+  { nom: 'Kolda', lat: 12.8939, lng: -14.9410 },
+  { nom: 'Sédhiou', lat: 12.7044, lng: -15.5569 },
+  { nom: 'Ziguinchor', lat: 12.5681, lng: -16.2719 },
+];
+---
+
+<BaseLayout title={`Zone d'intervention | ${site.nomEntreprise}`}>
+  <section class="bg-anthracite-700 text-white py-12 sm:py-16">
+    <div class="container-page">
+      <h1 class="text-3xl sm:text-5xl font-display font-bold mb-3 text-white">Notre zone d'intervention</h1>
+      <p class="text-lg text-anthracite-200 max-w-2xl">
+        Basés à {site.ville}, nous intervenons {site.zone}.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-page grid gap-10 lg:grid-cols-2 items-start">
+      <div>
+        <h2 class="text-2xl font-display font-semibold mb-4 text-anthracite-800">Régions desservies</h2>
+        <p class="text-anthracite-600 mb-6">
+          Nous intervenons dans les 14 régions du Sénégal :
+        </p>
+        <ul class="grid grid-cols-2 gap-2 mb-8">
+          {regions.map((r) => (
+            <li class="flex items-center gap-2 text-anthracite-700">
+              <Icon name="pin" class="w-4 h-4 shrink-0 text-chantier-500" />
+              {r.nom}
+            </li>
+          ))}
+        </ul>
+        <div class="card bg-chantier-50 border border-chantier-200">
+          <p class="text-sm text-anthracite-700">
+            <strong>Votre ville n'apparaît pas ?</strong> Contactez-nous, nous étudions chaque
+            demande au cas par cas, partout {site.zone}.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <div id="map" class="w-full h-[420px] lg:h-[520px] rounded shadow-card z-0 bg-anthracite-100"></div>
+        <p class="text-xs text-anthracite-400 mt-2">Carte indicative — fond cartographique © OpenStreetMap.</p>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script is:inline define:vars={{ points: regions }}>
+    function initQlfMap() {
+      var el = document.getElementById('map');
+      if (!el || typeof L === 'undefined') return;
+      var map = L.map('map', { scrollWheelZoom: false }).setView([14.6, -15.2], 7);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap',
+        maxZoom: 18,
+      }).addTo(map);
+      var bounds = [];
+      points.forEach(function (p) {
+        var marker = L.circleMarker([p.lat, p.lng], {
+          radius: p.base ? 10 : 7,
+          color: '#ffffff',
+          weight: 2,
+          fillColor: p.base ? '#D97706' : '#F59E0B',
+          fillOpacity: 1,
+        }).addTo(map);
+        marker.bindPopup('<strong>' + p.nom + '</strong>' + (p.base ? '<br>Siège' : ''));
+        marker.bindTooltip(p.nom, { direction: 'top' });
+        bounds.push([p.lat, p.lng]);
+      });
+      if (bounds.length) map.fitBounds(bounds, { padding: [40, 40] });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initQlfMap);
+    } else {
+      initQlfMap();
+    }
+  </script>
+</BaseLayout>

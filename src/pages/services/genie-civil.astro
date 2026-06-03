@@ -1,0 +1,30 @@
+---
+import ServicePage from '../../components/ServicePage.astro';
+import { site } from '../../config/site';
+
+const travaux = [
+  'Fondations et travaux de gros œuvre',
+  'Structures en béton armé',
+  'Voiries et réseaux divers (VRD)',
+  'Ouvrages de génie civil',
+  'Terrassement et assainissement',
+  'Dallages et ouvrages spéciaux',
+];
+
+const faq = [
+  { q: 'Quels ouvrages réalisez-vous ?', r: 'Fondations, gros œuvre, structures en béton armé, terrassement, assainissement, dallages et voiries et réseaux divers (VRD).' },
+  { q: 'Travaillez-vous avec des bureaux d\'études ?', r: 'Oui, nous collaborons avec des bureaux d\'études techniques pour vérifier le dimensionnement et la conformité de chaque ouvrage.' },
+  { q: 'Réalisez-vous les VRD d\'un lotissement ?', r: 'Nous prenons en charge la voirie et les réseaux divers (eau, assainissement, électricité) pour viabiliser vos terrains.' },
+];
+---
+
+<ServicePage
+  titre="Génie civil"
+  titreCourt="Génie civil"
+  intro={`${site.nomEntreprise} réalise les fondations et le gros œuvre, les structures en béton armé, le terrassement, l'assainissement, les dallages et les voiries et réseaux divers (VRD), dans le respect des normes techniques et de sécurité.`}
+  description={`Travaux de génie civil ${site.zone} : fondations, structures en béton armé, terrassement, assainissement, dallages et voiries et réseaux divers (VRD).`}
+  travaux={travaux}
+  faq={faq}
+  image="/realisations/realisation-17.jpg"
+  imageAlt="Fondations et structure en béton armé sur un chantier QLF Group"
+/>

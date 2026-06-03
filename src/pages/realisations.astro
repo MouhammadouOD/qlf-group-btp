@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../config/site';
+
+// Perspectives 3D / projets livrés
+const projets = [
+  { src: '/realisations/realisation-15.jpg', alt: 'Villa contemporaine éclairée de nuit', ratio: 'aspect-video' },
+  { src: '/realisations/realisation-18.jpg', alt: 'Perspective nocturne d\'une villa moderne', ratio: 'aspect-video' },
+  { src: '/realisations/realisation-16.jpg', alt: 'Plan architectural d\'une villa (RDC)', ratio: 'aspect-[3/4]' },
+];
+
+// Photos de chantiers (gros œuvre, fondations, ferraillage, étanchéité…)
+const chantiers = [
+  { n: '01', alt: 'Terrassement et fouille du terrain' },
+  { n: '02', alt: 'Ferraillage d\'une dalle en treillis soudé' },
+  { n: '03', alt: 'Ferraillage de poutres et chaînages' },
+  { n: '04', alt: 'Pelle mécanique en cours de terrassement' },
+  { n: '05', alt: 'Fondation et soubassement fraîchement coulés' },
+  { n: '06', alt: 'Application de béton projeté sur un mur' },
+  { n: '07', alt: 'Ouvrier réalisant l\'enduit d\'un mur' },
+  { n: '08', alt: 'Ferraillage d\'un radier' },
+  { n: '09', alt: 'Villa en gros œuvre avec échafaudage' },
+  { n: '10', alt: 'Espace intérieur en cours, dalle et plafond' },
+  { n: '11', alt: 'Sous-face de dalle et échafaudages' },
+  { n: '12', alt: 'Pose d\'étanchéité sur toiture-terrasse' },
+  { n: '13', alt: 'Toiture-terrasse étanchée' },
+  { n: '14', alt: 'Grand volume intérieur en cours de finition' },
+  { n: '17', alt: 'Fondations sur semelles en béton armé' },
+  { n: '19', alt: 'Poteaux et structure béton en élévation' },
+  { n: '20', alt: 'Fondations et poteaux d\'un bâtiment en chantier' },
+].map((c) => ({ src: `/realisations/realisation-${c.n}.jpg`, alt: c.alt }));
+---
+
+<BaseLayout
+  title={`Nos réalisations | ${site.nomEntreprise}`}
+  description={`Découvrez les chantiers et projets de ${site.nomEntreprise} : construction, génie civil et gros œuvre ${site.zone}.`}
+>
+  <section class="bg-anthracite-700 text-white py-12 sm:py-16">
+    <div class="container-page">
+      <h1 class="text-3xl sm:text-5xl font-display font-bold mb-3 text-white">Nos réalisations</h1>
+      <p class="text-lg text-anthracite-200 max-w-2xl">
+        Un aperçu de nos projets et de nos chantiers, du terrassement aux finitions.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-page">
+      <h2 class="section-title">Projets & perspectives</h2>
+      <p class="section-subtitle mb-10">Perspectives de projets et chantiers réalisés par {site.nomEntreprise}.</p>
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {projets.map((p) => (
+          <div class="overflow-hidden rounded shadow-card group">
+            <img
+              src={p.src}
+              alt={p.alt}
+              class={`w-full ${p.ratio} object-cover transition-transform duration-500 group-hover:scale-105`}
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container-page">
+      <h2 class="section-title">Nos chantiers en images</h2>
+      <p class="section-subtitle mb-10">
+        Fondations, béton armé, gros œuvre, étanchéité : le savoir-faire {site.nomEntreprise} sur le terrain.
+      </p>
+      <div class="gap-4 [column-count:1] sm:[column-count:2] lg:[column-count:3]">
+        {chantiers.map((c) => (
+          <div class="mb-4 overflow-hidden rounded shadow-card break-inside-avoid group">
+            <img
+              src={c.src}
+              alt={c.alt}
+              class="w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-anthracite-800 text-white text-center">
+    <div class="container-page max-w-2xl">
+      <h2 class="text-3xl font-display font-semibold mb-4 text-white">Un projet similaire en tête ?</h2>
+      <p class="text-anthracite-200 mb-8">Parlons-en. Notre équipe étudie votre projet et vous propose un devis gratuit.</p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="/services" class="btn-secondary">Voir nos services</a>
+        <a href="/contact" class="btn-primary">Demander un devis gratuit</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,31 @@
+---
+import ServicePage from '../../components/ServicePage.astro';
+import { site } from '../../config/site';
+
+const travaux = [
+  'Études techniques',
+  'Plans et conception',
+  'Gestion et suivi de chantier',
+  'Assistance à la maîtrise d\'ouvrage (AMO)',
+  'Estimation et planification budgétaire',
+  'Coordination des intervenants',
+];
+
+const faq = [
+  { q: 'Réalisez-vous les plans de mon projet ?', r: 'Notre équipe conçoit les plans et réalise les études techniques nécessaires à l\'exécution de votre projet.' },
+  { q: 'En quoi consiste votre assistance à maîtrise d\'ouvrage ?', r: 'Nous vous conseillons et vous représentons sur les choix techniques, l\'estimation budgétaire et le suivi des travaux.' },
+  { q: 'Pouvez-vous suivre un chantier que je fais réaliser ?', r: 'Oui, nous assurons la gestion et le suivi de chantier ainsi que la coordination des intervenants.' },
+  { q: 'Faut-il vous impliquer dès la conception ?', r: 'Plus nous intervenons tôt, mieux les coûts, les délais et la planification sont maîtrisés.' },
+];
+---
+
+<ServicePage
+  titre="Études & suivi de projets"
+  titreCourt="Études"
+  intro={`${site.nomEntreprise} réalise les études techniques et les plans de conception, assure la gestion et le suivi de chantier, l'estimation et la planification budgétaire, la coordination des intervenants et l'assistance à la maîtrise d'ouvrage (AMO).`}
+  description={`Études techniques, plans de conception, suivi de chantier, planification budgétaire et assistance à la maîtrise d'ouvrage (AMO) ${site.zone}.`}
+  travaux={travaux}
+  faq={faq}
+  image="/realisations/realisation-16.jpg"
+  imageAlt="Plan architectural d'une villa étudié par QLF Group"
+/>

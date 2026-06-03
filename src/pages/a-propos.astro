@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { site, valeurs } from '../config/site';
+---
+
+<BaseLayout
+  title={`À propos | ${site.nomEntreprise}`}
+  description={`${site.nomEntreprise}, entreprise de ${site.metier} : construction, génie civil, rénovation et gestion de projets immobiliers. ${site.slogan}`}
+>
+  <section class="bg-anthracite-700 text-white py-12 sm:py-16">
+    <div class="container-page">
+      <h1 class="text-3xl sm:text-5xl font-display font-bold mb-3 text-white">À propos de {site.nomEntreprise}</h1>
+      <p class="text-lg text-anthracite-200 max-w-2xl">{site.slogan}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-page grid gap-10 lg:grid-cols-3">
+      <div class="lg:col-span-2 space-y-6 text-anthracite-600 leading-relaxed text-lg">
+        <h2 class="text-2xl font-display font-semibold text-anthracite-800">Qui sommes-nous ?</h2>
+        <p>
+          {site.nomEntreprise} est une entreprise spécialisée dans la <strong>construction de bâtiments</strong>,
+          les <strong>travaux de génie civil</strong>, la <strong>rénovation</strong> et la
+          <strong> gestion de projets immobiliers</strong>. Fondée sur des valeurs de confiance, d'engagement
+          et de qualité, notre mission est d'accompagner nos clients dans la réalisation de leurs projets
+          les plus ambitieux.
+        </p>
+        <p>
+          Grâce à une équipe qualifiée et expérimentée, nous intervenons dans la construction de maisons
+          individuelles, d'immeubles résidentiels, de bâtiments commerciaux et d'ouvrages divers, en
+          garantissant des prestations conformes aux normes de qualité et de sécurité.
+        </p>
+        <p>
+          Chez {site.nomEntreprise}, chaque projet est considéré comme un <strong>engagement durable</strong>
+          envers nos clients. Nous mettons tout en œuvre pour livrer des réalisations solides, modernes et
+          adaptées aux besoins de chacun.
+        </p>
+
+        <h2 class="text-2xl font-display font-semibold text-anthracite-800 pt-4">Nos valeurs</h2>
+        <ul class="space-y-3">
+          {valeurs.map((v) => (
+            <li class="flex gap-3">
+              <Icon name="check" class="w-5 h-5 shrink-0 text-chantier-500 mt-1" />
+              <span><strong>{v.titre} :</strong> {v.texte}</span>
+            </li>
+          ))}
+        </ul>
+
+        <h2 class="text-2xl font-display font-semibold text-anthracite-800 pt-4">Notre vision</h2>
+        <p>
+          Faire de {site.nomEntreprise} une <strong>référence du secteur du BTP en Afrique</strong>,
+          reconnue pour la qualité de ses réalisations, son innovation et son engagement envers la
+          satisfaction de ses clients.
+        </p>
+
+        <p class="font-display text-xl text-anthracite-800 pt-4">« {site.slogan} »</p>
+      </div>
+
+      <aside class="space-y-6">
+        <div class="card">
+          <h3 class="font-semibold mb-3 text-anthracite-800">En bref</h3>
+          <ul class="space-y-3 text-sm">
+            <li class="flex justify-between"><span class="text-anthracite-500">Domaines</span><strong class="text-right">Construction · Génie civil · Rénovation · Études</strong></li>
+            <li class="flex justify-between"><span class="text-anthracite-500">Zone</span><strong class="text-right">Sénégal & Afrique de l'Ouest</strong></li>
+            <li class="flex justify-between"><span class="text-anthracite-500">Clients</span><strong class="text-right">Particuliers · Promoteurs · Entreprises</strong></li>
+            <li class="flex justify-between"><span class="text-anthracite-500">Devis</span><strong>Gratuit</strong></li>
+          </ul>
+        </div>
+        <div class="card bg-chantier-50 border border-chantier-200">
+          <h3 class="font-semibold mb-2 text-anthracite-800">Un projet ?</h3>
+          <p class="text-sm text-anthracite-600 mb-4">Décrivez-nous votre besoin, notre équipe revient vers vous rapidement.</p>
+          <a href="/contact" class="btn-primary w-full">Demander un devis</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

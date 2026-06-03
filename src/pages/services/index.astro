@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { services, site } from '../../config/site';
+---
+
+<BaseLayout
+  title={`Nos services BTP | ${site.nomEntreprise}`}
+  description={`Découvrez les services de ${site.nomEntreprise} : construction de bâtiments, génie civil, rénovation & réhabilitation, études et suivi de projets. Intervention ${site.zone}.`}
+>
+  <section class="bg-anthracite-700 text-white py-12 sm:py-16">
+    <div class="container-page">
+      <h1 class="text-3xl sm:text-5xl font-display font-bold mb-3 text-white">Nos services</h1>
+      <p class="text-lg text-anthracite-200 max-w-2xl">Un savoir-faire complet pour vos projets BTP, {site.zone}.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-page grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {services.map((s) => (
+        <a href={`/services/${s.slug}`} class="card group block">
+          <Icon name={s.icon} class="w-12 h-12 text-chantier-500 mb-4" />
+          <h2 class="text-xl font-display font-semibold mb-2">{s.titre}</h2>
+          <p class="text-anthracite-500 mb-4 leading-relaxed">{s.description}</p>
+          <span class="inline-flex items-center gap-1 text-chantier-600 font-semibold group-hover:gap-2 transition-all">Voir le détail <Icon name="arrowRight" class="w-4 h-4" /></span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

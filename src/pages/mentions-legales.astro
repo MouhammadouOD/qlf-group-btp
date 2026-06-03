@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../config/site';
+---
+
+<BaseLayout title={`Mentions légales | ${site.nomEntreprise}`} noindex>
+  <section class="section">
+    <div class="container-page max-w-3xl prose prose-anthracite">
+      <h1 class="font-display text-3xl mb-8">Mentions légales</h1>
+
+      <h2 class="font-display text-xl mt-8 mb-3">Éditeur du site</h2>
+      <p>
+        <strong>{site.nomEntreprise}</strong><br/>
+        {site.adresse.ville}, {site.pays}<br/>
+        Tél : {site.telephone} / {site.telephoneSecondaire}<br/>
+        Email : {site.email}<br/>
+        NINEA : [À compléter]<br/>
+        Registre du Commerce (RC) : [À compléter]<br/>
+        Forme juridique : [À compléter]<br/>
+        Capital social : [À compléter]<br/>
+        Directeur de la publication : [À compléter]
+      </p>
+
+      <h2 class="font-display text-xl mt-8 mb-3">Hébergeur</h2>
+      <p>
+        [Hébergeur à compléter]
+      </p>
+
+      <h2 class="font-display text-xl mt-8 mb-3">Propriété intellectuelle</h2>
+      <p>
+        L'ensemble du contenu de ce site (textes, images, logos) est la propriété exclusive de
+        {site.nomEntreprise}, sauf mention contraire. Toute reproduction sans autorisation est interdite.
+      </p>
+
+      <h2 class="font-display text-xl mt-8 mb-3">Assurances</h2>
+      <p>
+        {site.nomEntreprise} est couverte par une assurance responsabilité civile professionnelle
+        auprès de [Nom assureur] — Contrat n° [À compléter].
+      </p>
+    </div>
+  </section>
+</BaseLayout>

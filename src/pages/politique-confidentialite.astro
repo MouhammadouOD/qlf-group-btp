@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../config/site';
+---
+
+<BaseLayout title={`Politique de confidentialité | ${site.nomEntreprise}`} noindex>
+  <section class="section">
+    <div class="container-page max-w-3xl space-y-4 text-anthracite-700 leading-relaxed">
+      <h1 class="font-display text-3xl mb-8">Politique de confidentialité</h1>
+
+      <h2 class="font-display text-xl mt-8 mb-3">Données collectées</h2>
+      <p>
+        Lorsque vous utilisez notre formulaire de contact, nous collectons : votre nom, email,
+        téléphone, et les informations relatives à votre projet de travaux. Ces informations sont
+        nécessaires pour répondre à votre demande.
+      </p>
+
+      <h2 class="font-display text-xl mt-8 mb-3">Utilisation des données</h2>
+      <p>
+        Vos données sont utilisées exclusivement pour : (1) répondre à votre demande de devis ou
+        d'information, (2) assurer le suivi commercial de votre projet. <strong>Aucune donnée
+        n'est revendue ni transmise à des tiers</strong>, à l'exception des prestataires
+        techniques nécessaires (hébergeur du site, fournisseur d'email).
+      </p>
+
+      <h2 class="font-display text-xl mt-8 mb-3">Durée de conservation</h2>
+      <p>
+        Les demandes sans suite sont supprimées après 3 ans. Les données clients sont conservées
+        pendant la durée de la relation contractuelle, puis pendant la durée légale applicable
+        aux garanties de l'ouvrage.
+      </p>
+
+      <h2 class="font-display text-xl mt-8 mb-3">Vos droits</h2>
+      <p>
+        Conformément à la loi n°2008-12 du 25 janvier 2008 sur la protection des données à
+        caractère personnel, vous disposez d'un droit d'accès, de rectification, d'effacement, et
+        d'opposition au traitement de vos données. Pour exercer ces droits, contactez-nous à
+        <a href={`mailto:${site.email}`} class="text-chantier-600 hover:underline"> {site.email}</a>.
+        Vous pouvez également saisir la Commission de Protection des Données Personnelles (CDP),
+        autorité de contrôle au Sénégal.
+      </p>
+
+      <h2 class="font-display text-xl mt-8 mb-3">Cookies</h2>
+      <p>
+        Ce site utilise uniquement des cookies techniques nécessaires à son fonctionnement
+        (aucun cookie publicitaire ou de suivi). Aucun consentement n'est requis pour ces cookies essentiels.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

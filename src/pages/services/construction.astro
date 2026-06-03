@@ -1,0 +1,30 @@
+---
+import ServicePage from '../../components/ServicePage.astro';
+import { site } from '../../config/site';
+
+const travaux = [
+  'Villas et maisons individuelles',
+  'Immeubles résidentiels',
+  'Bâtiments commerciaux (commerces, bureaux, entrepôts)',
+  'Bâtiments administratifs et institutionnels',
+  'Gros œuvre et second œuvre',
+  'Livraison clés en main',
+];
+
+const faq = [
+  { q: 'Réalisez-vous des projets clés en main ?', r: `${site.nomEntreprise} pilote le gros œuvre et le second œuvre jusqu'à la livraison du bâtiment prêt à l'usage.` },
+  { q: 'Intervenez-vous pour les particuliers comme pour les professionnels ?', r: 'Nous construisons aussi bien des villas et maisons individuelles que des immeubles résidentiels, des bâtiments commerciaux ou administratifs.' },
+  { q: 'Comment obtenir un devis ?', r: 'Décrivez-nous votre projet via le formulaire de contact ou par téléphone. Nous revenons vers vous avec une étude et un chiffrage détaillés.' },
+];
+---
+
+<ServicePage
+  titre="Construction de bâtiments"
+  titreCourt="Construction"
+  intro={`${site.nomEntreprise} construit des villas, des maisons individuelles, des immeubles résidentiels ainsi que des bâtiments commerciaux et administratifs. Nous prenons en charge le gros œuvre et le second œuvre, du terrassement jusqu'à la livraison.`}
+  description={`Construction de villas, immeubles résidentiels et bâtiments commerciaux ou administratifs ${site.zone} : gros œuvre, second œuvre et livraison clés en main.`}
+  travaux={travaux}
+  faq={faq}
+  image="/realisations/realisation-15.jpg"
+  imageAlt="Villa moderne livrée par QLF Group"
+/>

@@ -1,0 +1,32 @@
+---
+import ServicePage from '../../components/ServicePage.astro';
+import { site } from '../../config/site';
+
+const travaux = [
+  'Réhabilitation de bâtiments anciens',
+  'Extensions et surélévations',
+  'Modernisation des infrastructures',
+  'Réaménagement et transformation d\'espaces',
+  'Reprise de structures et gros œuvre',
+  'Mise à niveau et finitions',
+];
+
+const faq = [
+  { q: 'Rénovez-vous les bâtiments anciens ?', r: 'La réhabilitation de bâtiments anciens fait partie de nos travaux courants : reprise de structures, gros œuvre, mise à niveau et finitions.' },
+  { q: 'Pouvez-vous agrandir un bâtiment existant ?', r: 'Par extension au sol ou surélévation, nous augmentons votre surface en tenant compte de la structure existante.' },
+  { q: 'Faut-il quitter les lieux pendant les travaux ?', r: 'Cela dépend de l\'ampleur du chantier. Nous organisons les travaux pour limiter la gêne et nous en discutons avec vous en amont.' },
+  { q: 'Reprenez-vous une structure abîmée ?', r: 'Oui, la reprise de structures et de gros œuvre fait partie de nos interventions de réhabilitation.' },
+  { q: 'Gérez-vous les différents corps de métier ?', r: `${site.nomEntreprise} coordonne les intervenants nécessaires au déroulement de la rénovation.` },
+];
+---
+
+<ServicePage
+  titre="Rénovation & réhabilitation"
+  titreCourt="Rénovation"
+  intro={`${site.nomEntreprise} prend en charge la réhabilitation de bâtiments anciens, les extensions et surélévations, la reprise de structures et le réaménagement d'espaces, jusqu'à la mise à niveau et aux finitions.`}
+  description={`Rénovation et réhabilitation ${site.zone} : bâtiments anciens, extensions, surélévations, reprise de structures et réaménagement d'espaces.`}
+  travaux={travaux}
+  faq={faq}
+  image="/realisations/realisation-09.jpg"
+  imageAlt="Bâtiment en cours de gros œuvre et finitions par QLF Group"
+/>

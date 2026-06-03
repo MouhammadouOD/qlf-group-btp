@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../config/site';
+---
+
+<BaseLayout
+  title={`Devis gratuit | ${site.nomEntreprise}`}
+  description={`Demandez votre devis BTP gratuit à ${site.nomEntreprise}. Construction, génie civil, rénovation, études. Intervention ${site.zone}.`}
+>
+  <section class="bg-anthracite-700 text-white py-12 sm:py-16">
+    <div class="container-page">
+      <h1 class="text-3xl sm:text-5xl font-display font-bold mb-3 text-white">Demandez votre devis gratuit</h1>
+      <p class="text-lg text-anthracite-200">Décrivez votre projet, nous vous recontactons rapidement.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-page grid gap-10 lg:grid-cols-5">
+      <div class="lg:col-span-3">
+        <form
+          name="devis"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="card space-y-5"
+        >
+          <input type="hidden" name="form-name" value="devis" />
+          <p class="hidden"><label>Ne pas remplir : <input name="bot-field" /></label></p>
+
+          <div class="grid sm:grid-cols-2 gap-5">
+            <label class="block">
+              <span class="text-sm font-medium text-anthracite-700">Nom complet *</span>
+              <input type="text" name="nom" required class="mt-1 w-full rounded border-anthracite-200 border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-chantier-400" />
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-anthracite-700">Téléphone *</span>
+              <input type="tel" name="telephone" required class="mt-1 w-full rounded border-anthracite-200 border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-chantier-400" />
+            </label>
+          </div>
+
+          <label class="block">
+            <span class="text-sm font-medium text-anthracite-700">Email *</span>
+            <input type="email" name="email" required class="mt-1 w-full rounded border-anthracite-200 border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-chantier-400" />
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-medium text-anthracite-700">Type de travaux *</span>
+            <select name="type" required class="mt-1 w-full rounded border-anthracite-200 border px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-chantier-400">
+              <option value="">— Sélectionner —</option>
+              <option>Construction de bâtiments</option>
+              <option>Génie civil</option>
+              <option>Rénovation & réhabilitation</option>
+              <option>Études & suivi de projets</option>
+              <option>Autre / je ne sais pas</option>
+            </select>
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-medium text-anthracite-700">Adresse du chantier</span>
+            <input type="text" name="adresse" class="mt-1 w-full rounded border-anthracite-200 border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-chantier-400" />
+          </label>
+
+          <label class="block">
+            <span class="text-sm font-medium text-anthracite-700">Description du projet *</span>
+            <textarea name="message" rows="5" required class="mt-1 w-full rounded border-anthracite-200 border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-chantier-400"></textarea>
+          </label>
+
+          <label class="flex items-start gap-3 text-sm text-anthracite-600">
+            <input type="checkbox" name="consentement" required class="mt-1" />
+            <span>J'accepte que mes données soient utilisées pour traiter ma demande, conformément à la <a href="/politique-confidentialite" class="text-chantier-600 hover:underline">politique de confidentialité</a>.</span>
+          </label>
+
+          <button type="submit" class="btn-primary w-full">Envoyer ma demande</button>
+
+          <p class="flex items-center justify-center gap-2 text-xs text-anthracite-500 text-center">
+            <Icon name="lock" class="w-4 h-4 shrink-0" /> Vos informations restent confidentielles.
+          </p>
+        </form>
+      </div>
+
+      <aside class="lg:col-span-2 space-y-6">
+        <div class="card">
+          <h2 class="font-display text-xl font-semibold mb-4 text-anthracite-800">Coordonnées</h2>
+          <ul class="space-y-3 text-sm">
+            <li>
+              <a href={`tel:${site.telephoneRaw}`} class="flex items-center gap-3 text-anthracite-700 hover:text-chantier-600">
+                <Icon name="phone" class="w-5 h-5 shrink-0 text-chantier-500" />{site.telephone}
+              </a>
+            </li>
+            <li>
+              <a href={`tel:${site.telephoneTertiaire.replace(/\s/g, '')}`} class="flex items-center gap-3 text-anthracite-700 hover:text-chantier-600">
+                <Icon name="phone" class="w-5 h-5 shrink-0 text-chantier-500" />{site.telephoneTertiaire}
+              </a>
+            </li>
+            <li>
+              <a href={`tel:${site.telephoneSecondaire.replace(/\s/g, '')}`} class="flex items-center gap-3 text-anthracite-700 hover:text-chantier-600">
+                <Icon name="phone" class="w-5 h-5 shrink-0 text-chantier-500" />{site.telephoneSecondaire} <span class="text-anthracite-400 text-xs">(France / diaspora)</span>
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${site.email}`} class="flex items-center gap-3 text-anthracite-700 hover:text-chantier-600 break-all">
+                <Icon name="mail" class="w-5 h-5 shrink-0 text-chantier-500" />{site.email}
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${site.emailSecondaire}`} class="flex items-center gap-3 text-anthracite-700 hover:text-chantier-600 break-all">
+                <Icon name="mail" class="w-5 h-5 shrink-0 text-chantier-500" />{site.emailSecondaire}
+              </a>
+            </li>
+            <li class="flex items-start gap-3 text-anthracite-700">
+              <Icon name="pin" class="w-5 h-5 shrink-0 text-chantier-500" />
+              <span>{site.adresse.ville}, {site.pays}</span>
+            </li>
+            <li class="flex items-center gap-3 text-anthracite-700">
+              <Icon name="clock" class="w-5 h-5 shrink-0 text-chantier-500" />{site.horaires}
+            </li>
+          </ul>
+        </div>
+        <a
+          href={`https://wa.me/${site.whatsapp.replace(/[^0-9]/g, '')}`}
+          target="_blank" rel="noopener"
+          class="card flex items-center gap-3 hover:bg-green-50 border border-green-200"
+        >
+          <Icon name="whatsapp" class="w-8 h-8 shrink-0 text-green-500" />
+          <div>
+            <p class="font-semibold text-anthracite-800">WhatsApp</p>
+            <p class="text-sm text-anthracite-500">Échangez avec nous directement</p>
+          </div>
+        </a>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
